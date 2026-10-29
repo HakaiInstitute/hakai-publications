@@ -1,0 +1,57 @@
+name: Gather publications
+
+on:
+  schedule:
+    - cron: "0 14 1 * *" # 1st of every month, 14:00 UTC
+  workflow_dispatch: # manual re-run from the Actions tab
+    inputs:
+      full_scan:
+        description: Scan all years instead of recent works only
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency: gather-publications
+
+jobs:
+  gather:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Gather new publications
+        env:
+          OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
+          GATHER_MAILTO: ${{ vars.GATHER_MAILTO }}
+        run: python gather_publications.py ${{ inputs.full_scan && '--full' || '' }}
+
+      - name: Open or update the review pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet publications.json; then
+            echo "No new publications found."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B auto/new-publications
+          git add publications.json
+          git commit -m "Add new publications for review"
+          # last_run only advances when the PR is merged, so an unmerged PR is simply
+          # regenerated (with anything newer) on the next run
+          git push --force origin auto/new-publications
+          if [ "$(gh pr list --head auto/new-publications --state open --json number --jq length)" = "0" ]; then
+            gh pr create \
+              --base "${{ github.event.repository.default_branch }}" \
+              --head auto/new-publications \
+              --title "New publications for review" \
+              --body "Entries added with status \`needs review\`. Set each to \`published\` or \`rejected\` (rejected works are never re-added), then merge."
+          fi
