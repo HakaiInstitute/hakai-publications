@@ -449,7 +449,9 @@ def annotate(w, by_orcid, name_only):
     reasons = []
     for a in w["authors"]:
         listed = by_orcid.get(a["orcid"])
-        a["hakai"] = bool(a["hakai_affil"] or listed)
+        # only the affiliation on this work counts: a listed author who has since
+        # left Hakai is not a Hakai author on a paper that doesn't list Hakai
+        a["hakai"] = bool(a["hakai_affil"])
         if listed:
             reasons.append(f"ORCID: {listed['name']}")
         if a["hakai_affil"]:

@@ -781,7 +781,7 @@
         {
           "name": "Olson, A. M.",
           "orcid": "0000-0001-8443-1868",
-          "hakai": true
+          "hakai": false
         },
         {
           "name": "Robinson, K. M.",
@@ -824,7 +824,6 @@
         "Velazquez, S.",
         "Morien, E.",
         "Monteith, Z. L.",
-        "Olson, A. M.",
         "Robinson, K. M.",
         "Lemay, M. A."
       ],
@@ -1270,7 +1269,7 @@
         {
           "name": "Whalen, M. A.",
           "orcid": "0000-0002-5262-6131",
-          "hakai": true
+          "hakai": false
         },
         {
           "name": "Branson, D. R.",
@@ -1416,7 +1415,6 @@
         }
       ],
       "hakai_authors": [
-        "Whalen, M. A.",
         "Froese, T."
       ],
       "venue": "Ecology",
@@ -4121,7 +4119,7 @@
         {
           "name": "Jackson, J. M.",
           "orcid": "0000-0002-2318-8814",
-          "hakai": true
+          "hakai": false
         },
         {
           "name": "Belluz, J. D. B.",
@@ -4152,7 +4150,6 @@
         "Hare, A.",
         "Giesbrecht, I.",
         "Evans, W.",
-        "Jackson, J. M.",
         "Belluz, J. D. B.",
         "Kellogg, C. T. E.",
         "Jordison, D."
@@ -8379,7 +8376,7 @@
         {
           "name": "Jackson, J. M.",
           "orcid": "0000-0002-2318-8814",
-          "hakai": true
+          "hakai": false
         },
         {
           "name": "Alin, S. R.",
@@ -8404,8 +8401,7 @@
       ],
       "hakai_authors": [
         "Hare, A.",
-        "Evans, W.",
-        "Jackson, J. M."
+        "Evans, W."
       ],
       "venue": "Marine Chemistry",
       "type": "article",
@@ -9559,7 +9555,7 @@
         {
           "name": "Jackson, J. M.",
           "orcid": "0000-0002-2318-8814",
-          "hakai": true
+          "hakai": false
         },
         {
           "name": "Hare, A.",
@@ -9600,7 +9596,6 @@
         }
       ],
       "hakai_authors": [
-        "Jackson, J. M.",
         "Hare, A."
       ],
       "venue": "Journal of Geophysical Research Oceans",
@@ -10095,7 +10090,7 @@
         {
           "name": "Jackson, J. M.",
           "orcid": "0000-0002-2318-8814",
-          "hakai": true
+          "hakai": false
         },
         {
           "name": "Kellogg, C. T. E.",
@@ -10110,7 +10105,7 @@
         {
           "name": "Pierre, K. A. S.",
           "orcid": "0000-0003-0981-920X",
-          "hakai": true
+          "hakai": false
         },
         {
           "name": "Carmack, E. C.",
@@ -10144,9 +10139,7 @@
         }
       ],
       "hakai_authors": [
-        "Jackson, J. M.",
-        "Kellogg, C. T. E.",
-        "Pierre, K. A. S."
+        "Kellogg, C. T. E."
       ],
       "venue": "Limnology and Oceanography",
       "type": "article",
@@ -11511,7 +11504,7 @@
         {
           "name": "Jackson, J. M.",
           "orcid": "0000-0002-2318-8814",
-          "hakai": true
+          "hakai": false
         },
         {
           "name": "Allen, S. E.",
@@ -11535,7 +11528,6 @@
         }
       ],
       "hakai_authors": [
-        "Jackson, J. M.",
         "Giesbrecht, I."
       ],
       "venue": "Ocean science",
@@ -11906,7 +11898,7 @@
         {
           "name": "Jackson, J. M.",
           "orcid": "0000-0002-2318-8814",
-          "hakai": true
+          "hakai": false
         },
         {
           "name": "Clare, M. A.",
@@ -11938,7 +11930,7 @@
         {
           "name": "Menounos, B.",
           "orcid": "0000-0002-3370-4392",
-          "hakai": true
+          "hakai": false
         },
         {
           "name": "Geertsema, M.",
@@ -11948,9 +11940,7 @@
       ],
       "hakai_authors": [
         "Giesbrecht, I. J. W.",
-        "Belluz, J. D. B.",
-        "Jackson, J. M.",
-        "Menounos, B."
+        "Belluz, J. D. B."
       ],
       "venue": "Wiley",
       "type": "preprint",
@@ -12675,7 +12665,7 @@
         {
           "name": "Jackson, J. M.",
           "orcid": "0000-0002-2318-8814",
-          "hakai": true
+          "hakai": false
         },
         {
           "name": "Kellogg, C. T. E.",
@@ -12699,7 +12689,6 @@
       ],
       "hakai_authors": [
         "Belluz, J. D. B.",
-        "Jackson, J. M.",
         "Kellogg, C. T. E.",
         "Giesbrecht, I."
       ],
@@ -12820,12 +12809,11 @@
         {
           "name": "Robinson, K. M.",
           "orcid": "0000-0002-9500-1983",
-          "hakai": true
+          "hakai": false
         }
       ],
       "hakai_authors": [
-        "Kellogg, C. T. E.",
-        "Robinson, K. M."
+        "Kellogg, C. T. E."
       ],
       "venue": "",
       "type": "protocol",
@@ -13761,7 +13749,7 @@
         {
           "name": "Burt, J. M.",
           "orcid": "0000-0001-5536-4694",
-          "hakai": true
+          "hakai": false
         },
         {
           "name": "Stephens, T. A.",
@@ -13780,7 +13768,6 @@
         }
       ],
       "hakai_authors": [
-        "Burt, J. M.",
         "Hessing-Lewis, M. L."
       ],
       "venue": "Scientific Reports",
@@ -16761,7 +16748,7 @@
         {
           "name": "Menounos, B.",
           "orcid": "0000-0002-3370-4392",
-          "hakai": true
+          "hakai": false
         },
         {
           "name": "Clague, J. J.",
@@ -16780,8 +16767,7 @@
         }
       ],
       "hakai_authors": [
-        "Heathfield, D. K.",
-        "Menounos, B."
+        "Heathfield, D. K."
       ],
       "venue": "Earth Surface Processes and Landforms",
       "type": "article",
@@ -29472,7 +29458,7 @@
         {
           "name": "Menounos, B.",
           "orcid": "0000-0002-3370-4392",
-          "hakai": true
+          "hakai": false
         },
         {
           "name": "Tank, S. E.",
@@ -29482,8 +29468,7 @@
       ],
       "hakai_authors": [
         "Giesbrecht, I.",
-        "Hunt, B. P. V.",
-        "Menounos, B."
+        "Hunt, B. P. V."
       ],
       "venue": "BioScience",
       "type": "article",
