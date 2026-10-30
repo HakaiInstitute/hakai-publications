@@ -109,6 +109,13 @@ Existing entries are never edited or removed. Hand edits are preserved. New entr
 
 - **Section assignment.** `section` is a manual, editorial field from the original Word document, and the tool does not set it. Suggesting it automatically (from topics, keywords or a model reading the abstract) was deferred.
 - **Hakai Catalogue linking.** Marking whether a work is in the catalogue is done in `search-pubs.R` and `scrape_metadata_dois.py`, not in this tool.
+- **Author submissions.** Letting authors submit publications the tool did not find, possibly through the webpage that presents the list. Design notes for when it is built:
+  - Submissions are stored in `publications.json` itself, keyed by DOI. The tool then skips them in future runs, and they are never removed.
+  - A DOI is all an author needs to give. The tool would look it up in Crossref, DataCite and OpenAlex and build the citation and fields like any other entry.
+  - Submitted entries get status `needs review` and a `match_reasons` of "submitted by <name>". They bypass the Hakai-affiliation rule (section 3), because the metadata may omit the affiliation. The review step is the check instead.
+  - A paper without a DOI needs a title, year and full citation from the author. The tool would also need to block, not just flag, a later automatic match on the same title and year.
+  - Open question: whether submissions are limited to people listed in `hakai_authors.csv`.
+- **ORCID as a source.** Considered and left out. It would add only papers whose metadata lacks a Hakai affiliation, so it would need the affiliation rule relaxed to "ORCID match plus publication date within the person's Hakai employment dates on ORCID".
 - **Journal and book-title italics.** The citation is plain text, so none are stored.
 
 ## 11. Known limitations
