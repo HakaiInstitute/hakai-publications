@@ -1,6 +1,6 @@
 {
-  "last_updated": "Oct 29, 2026",
-  "publication_count": 658,
+  "last_updated": "Oct 30, 2026",
+  "publication_count": 666,
   "publications": [
     {
       "year": "2025",
@@ -45681,9 +45681,393 @@
       "date_added": "2026-10-29",
       "possible_duplicate_of": [],
       "openalex_id": "https://openalex.org/W2098635935"
+    },
+    {
+      "year": "2025",
+      "citation": "Stevens, S. W., Stevens, S. W., Hannah, C., Evans, W., Klymak, J., Ross, T., & Waterman, S. (2025). Drivers of oxygen variability on the Canadian Pacific shelf in the context of emerging hypoxia. Wiley. https://doi.org/10.22541/essoar.174117442.29335954/v1",
+      "url": "https://doi.org/10.22541/essoar.174117442.29335954/v1",
+      "doi": "10.22541/essoar.174117442.29335954/v1",
+      "status": "needs review",
+      "title": "Drivers of oxygen variability on the Canadian Pacific shelf in the context of emerging hypoxia",
+      "authors": [
+        {
+          "name": "Stevens, S. W.",
+          "orcid": "0000-0003-1108-6578",
+          "hakai": true
+        },
+        {
+          "name": "Stevens, S. W.",
+          "hakai": true
+        },
+        {
+          "name": "Hannah, C.",
+          "hakai": false
+        },
+        {
+          "name": "Evans, W.",
+          "hakai": true
+        },
+        {
+          "name": "Klymak, J.",
+          "hakai": false
+        },
+        {
+          "name": "Ross, T.",
+          "hakai": false
+        },
+        {
+          "name": "Waterman, S.",
+          "hakai": false
+        }
+      ],
+      "hakai_authors": [
+        "Stevens, S. W.",
+        "Stevens, S. W.",
+        "Evans, W."
+      ],
+      "venue": "Wiley",
+      "type": "preprint",
+      "sources": [
+        "Crossref"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [
+        "10.1029/2025gb008608",
+        "10.22541/essoar.174117442.29335954/v2"
+      ],
+      "openalex_id": null
+    },
+    {
+      "year": "2025",
+      "citation": "Stevens, S. W., Stevens, S. W., Hannah, C., Evans, W., Klymak, J., Ross, T., & Waterman, S. (2025). Drivers of oxygen variability on the Canadian Pacific shelf in the context of emerging hypoxia. Wiley. https://doi.org/10.22541/essoar.174117442.29335954/v2",
+      "url": "https://doi.org/10.22541/essoar.174117442.29335954/v2",
+      "doi": "10.22541/essoar.174117442.29335954/v2",
+      "status": "needs review",
+      "title": "Drivers of oxygen variability on the Canadian Pacific shelf in the context of emerging hypoxia",
+      "authors": [
+        {
+          "name": "Stevens, S. W.",
+          "orcid": "0000-0003-1108-6578",
+          "hakai": true
+        },
+        {
+          "name": "Stevens, S. W.",
+          "hakai": true
+        },
+        {
+          "name": "Hannah, C.",
+          "hakai": false
+        },
+        {
+          "name": "Evans, W.",
+          "hakai": true
+        },
+        {
+          "name": "Klymak, J.",
+          "hakai": false
+        },
+        {
+          "name": "Ross, T.",
+          "hakai": false
+        },
+        {
+          "name": "Waterman, S.",
+          "hakai": false
+        }
+      ],
+      "hakai_authors": [
+        "Stevens, S. W.",
+        "Stevens, S. W.",
+        "Evans, W."
+      ],
+      "venue": "Wiley",
+      "type": "preprint",
+      "sources": [
+        "Crossref"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [
+        "10.1029/2025gb008608",
+        "10.22541/essoar.174117442.29335954/v1"
+      ],
+      "openalex_id": null
+    },
+    {
+      "year": "2016",
+      "citation": "McKechnie, I., & Moss, M. L. (2016). Meta-analysis in zooarchaeology expands perspectives on Indigenous fisheries of the Northwest Coast of North America. Journal of Archaeological Science Reports, 8, 470-485. https://doi.org/10.1016/j.jasrep.2016.04.006",
+      "url": "https://doi.org/10.1016/j.jasrep.2016.04.006",
+      "doi": "10.1016/j.jasrep.2016.04.006",
+      "status": "needs review",
+      "title": "Meta-analysis in zooarchaeology expands perspectives on Indigenous fisheries of the Northwest Coast of North America",
+      "authors": [
+        {
+          "name": "McKechnie, I.",
+          "orcid": "0000-0002-4989-2711",
+          "hakai": true
+        },
+        {
+          "name": "Moss, M. L.",
+          "orcid": "0000-0003-1703-9422",
+          "hakai": false
+        }
+      ],
+      "hakai_authors": [
+        "McKechnie, I."
+      ],
+      "venue": "Journal of Archaeological Science Reports",
+      "type": "article",
+      "sources": [
+        "Crossref",
+        "OpenAlex"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [],
+      "openalex_id": "https://openalex.org/W2398038670"
+    },
+    {
+      "year": "2015",
+      "citation": "Singh, G. G., & McKechnie, I. (2015). Making the most of fragments: a method for estimating shell length from fragmentary mussels (Mytilus californianus and Mytilus trossulus) on the Pacific Coast of North America. Journal of Archaeological Science, 58, 175-183. https://doi.org/10.1016/j.jas.2015.02.029",
+      "url": "https://doi.org/10.1016/j.jas.2015.02.029",
+      "doi": "10.1016/j.jas.2015.02.029",
+      "status": "needs review",
+      "title": "Making the most of fragments: a method for estimating shell length from fragmentary mussels (Mytilus californianus and Mytilus trossulus) on the Pacific Coast of North America",
+      "authors": [
+        {
+          "name": "Singh, G. G.",
+          "orcid": "0000-0003-4333-1988",
+          "hakai": false
+        },
+        {
+          "name": "McKechnie, I.",
+          "orcid": "0000-0002-4989-2711",
+          "hakai": true
+        }
+      ],
+      "hakai_authors": [
+        "McKechnie, I."
+      ],
+      "venue": "Journal of Archaeological Science",
+      "type": "article",
+      "sources": [
+        "Crossref",
+        "OpenAlex"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [],
+      "openalex_id": "https://openalex.org/W2095344666"
+    },
+    {
+      "year": "2015",
+      "citation": "McKechnie, I., Singh, G. G., Braje, T. J., & Campbell, B. (2015). Measuring Mytilus californianus: an Addendum to Campbell and Braje (2015) and Singh and McKechnie (2015) including commentary and an integration of data. Journal of Archaeological Science, 58, 184-186. https://doi.org/10.1016/j.jas.2015.03.011",
+      "url": "https://doi.org/10.1016/j.jas.2015.03.011",
+      "doi": "10.1016/j.jas.2015.03.011",
+      "status": "needs review",
+      "title": "Measuring Mytilus californianus: an Addendum to Campbell and Braje (2015) and Singh and McKechnie (2015) including commentary and an integration of data",
+      "authors": [
+        {
+          "name": "McKechnie, I.",
+          "orcid": "0000-0002-4989-2711",
+          "hakai": true
+        },
+        {
+          "name": "Singh, G. G.",
+          "orcid": "0000-0003-4333-1988",
+          "hakai": false
+        },
+        {
+          "name": "Braje, T. J.",
+          "orcid": "0000-0002-3138-1665",
+          "hakai": false
+        },
+        {
+          "name": "Campbell, B.",
+          "hakai": false
+        }
+      ],
+      "hakai_authors": [
+        "McKechnie, I."
+      ],
+      "venue": "Journal of Archaeological Science",
+      "type": "article",
+      "sources": [
+        "Crossref",
+        "OpenAlex"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [],
+      "openalex_id": "https://openalex.org/W2036886384"
+    },
+    {
+      "year": "2015",
+      "citation": "Singh, G. G., McKechnie, I., Braje, T. J., & Campbell, B. (2015). “All models are wrong but some are useful”: A response to Campbell's comment on estimating Mytilus californianus shell size. Journal of Archaeological Science, 63, 160-163. https://doi.org/10.1016/j.jas.2015.08.021",
+      "url": "https://doi.org/10.1016/j.jas.2015.08.021",
+      "doi": "10.1016/j.jas.2015.08.021",
+      "status": "needs review",
+      "title": "“All models are wrong but some are useful”: A response to Campbell's comment on estimating Mytilus californianus shell size",
+      "authors": [
+        {
+          "name": "Singh, G. G.",
+          "orcid": "0000-0003-4333-1988",
+          "hakai": false
+        },
+        {
+          "name": "McKechnie, I.",
+          "orcid": "0000-0002-4989-2711",
+          "hakai": true
+        },
+        {
+          "name": "Braje, T. J.",
+          "orcid": "0000-0002-3138-1665",
+          "hakai": false
+        },
+        {
+          "name": "Campbell, B.",
+          "hakai": false
+        }
+      ],
+      "hakai_authors": [
+        "McKechnie, I."
+      ],
+      "venue": "Journal of Archaeological Science",
+      "type": "article",
+      "sources": [
+        "Crossref",
+        "OpenAlex"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [],
+      "openalex_id": "https://openalex.org/W2194842052"
+    },
+    {
+      "year": "2014",
+      "citation": "McKechnie, I., Lepofsky, D., Moss, M. L., Butler, V. L., Orchard, T. J., Coupland, G., Foster, F., Caldwell, M., & Lertzman, K. P. (2014). Archaeological data provide alternative hypotheses on Pacific herring ( Clupea pallasii ) distribution, abundance, and variability. Proceedings of the National Academy of Sciences, 111(9), E807-16. https://doi.org/10.1073/pnas.1316072111",
+      "url": "https://doi.org/10.1073/pnas.1316072111",
+      "doi": "10.1073/pnas.1316072111",
+      "status": "needs review",
+      "title": "Archaeological data provide alternative hypotheses on Pacific herring ( Clupea pallasii ) distribution, abundance, and variability",
+      "authors": [
+        {
+          "name": "McKechnie, I.",
+          "orcid": "0000-0002-4989-2711",
+          "hakai": false
+        },
+        {
+          "name": "Lepofsky, D.",
+          "orcid": "0000-0002-1858-0432",
+          "hakai": true
+        },
+        {
+          "name": "Moss, M. L.",
+          "orcid": "0000-0003-1703-9422",
+          "hakai": false
+        },
+        {
+          "name": "Butler, V. L.",
+          "orcid": "0009-0005-6121-6926",
+          "hakai": false
+        },
+        {
+          "name": "Orchard, T. J.",
+          "orcid": "0000-0001-9552-3215",
+          "hakai": false
+        },
+        {
+          "name": "Coupland, G.",
+          "hakai": false
+        },
+        {
+          "name": "Foster, F.",
+          "hakai": false
+        },
+        {
+          "name": "Caldwell, M.",
+          "hakai": false
+        },
+        {
+          "name": "Lertzman, K. P.",
+          "orcid": "0000-0002-4211-2188",
+          "hakai": true
+        }
+      ],
+      "hakai_authors": [
+        "Lepofsky, D.",
+        "Lertzman, K. P."
+      ],
+      "venue": "Proceedings of the National Academy of Sciences",
+      "type": "article",
+      "sources": [
+        "OpenAlex"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [],
+      "openalex_id": "https://openalex.org/W2141732275"
+    },
+    {
+      "year": "",
+      "citation": "McKechnie, I., Lepofsky, D., Moss, M. L., Butler, V. L., Orchard, T. J., Coupland, G., Foster, F. R., Caldwell, M., & Lertzman, K. P. (n.d.). Archaeological data provide alternative hypotheses on Pacific herring. Summit (Simon Fraser University).",
+      "url": "",
+      "doi": "",
+      "status": "needs review",
+      "title": "Archaeological data provide alternative hypotheses on Pacific herring",
+      "authors": [
+        {
+          "name": "McKechnie, I.",
+          "orcid": "0000-0002-4989-2711",
+          "hakai": false
+        },
+        {
+          "name": "Lepofsky, D.",
+          "orcid": "0000-0002-1858-0432",
+          "hakai": true
+        },
+        {
+          "name": "Moss, M. L.",
+          "orcid": "0000-0003-1703-9422",
+          "hakai": false
+        },
+        {
+          "name": "Butler, V. L.",
+          "orcid": "0009-0005-6121-6926",
+          "hakai": false
+        },
+        {
+          "name": "Orchard, T. J.",
+          "orcid": "0000-0001-9040-7522",
+          "hakai": false
+        },
+        {
+          "name": "Coupland, G.",
+          "hakai": false
+        },
+        {
+          "name": "Foster, F. R.",
+          "hakai": false
+        },
+        {
+          "name": "Caldwell, M.",
+          "hakai": false
+        },
+        {
+          "name": "Lertzman, K. P.",
+          "orcid": "0000-0002-4211-2188",
+          "hakai": true
+        }
+      ],
+      "hakai_authors": [
+        "Lepofsky, D.",
+        "Lertzman, K. P."
+      ],
+      "venue": "Summit (Simon Fraser University)",
+      "type": "article",
+      "sources": [
+        "OpenAlex"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [],
+      "openalex_id": "https://openalex.org/W7137394037"
     }
   ],
   "tool": {
-    "last_run": "2026-10-29T23:06:31+00:00"
+    "last_run": "2026-10-30T18:44:19+00:00"
   }
 }
