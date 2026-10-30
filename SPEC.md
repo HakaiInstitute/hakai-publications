@@ -72,7 +72,7 @@ Added fields:
 | `possible_duplicate_of` | List of DOIs of likely duplicates. Empty when there are none. |
 | `openalex_id` | OpenAlex ID, or `null` when unknown. |
 
-File-level fields: `publication_count` (entries not `rejected`), `last_updated`, and `tool.last_run`. These change only when entries are added. A run that finds nothing new leaves the file untouched, so there is never a change that consists of these fields alone.
+File-level fields: `publication_count` (entries not `rejected`), `last_updated`, `tool.last_run` and `tool.full_rescan_needed`. The first three change only when entries are added. `tool.full_rescan_needed` is the one other thing the tool records: it is set when a full scan loses a source (section 9). A run that finds nothing new and has no flag to set leaves the file untouched, so there is never a change that consists only of run metadata.
 
 Existing entries are never edited or removed. Hand edits are preserved. New entries are appended, sorted by year (newest first).
 
@@ -95,13 +95,17 @@ Existing entries are never edited or removed. Hand edits are preserved. New entr
 - **Schedule:** monthly, on the 1st at 14:00 UTC.
 - **Manual:** the "Run workflow" button in the Actions tab, with a "full scan" option.
 - **First run:** all years.
-- **Later runs:** works published within 730 days (`--lookback-days`) before `tool.last_run`, so late-indexed works are still caught. `tool.last_run` only advances when entries are added, so after a quiet stretch the window reaches further back than 730 days from today. That only means scanning a little more. Duplicates are harmless because of section 5. `--full` forces an all-years scan.
-- **Delivery:** a pull request is opened only when at least one new entry was added. The tool reports the count as the `new_count` output of the step, and the pull request step runs only when it is above 0. A run with nothing new writes no file, opens no pull request, and leaves any open one alone. When there are new entries, the Action pushes to the fixed branch `auto/new-publications` and opens or updates one pull request. The pull request description, and the Action's run summary, is the run report: a table of the new works with the reasons each matched and any possible duplicates. Nothing reaches the default branch unreviewed. `tool.last_run` only advances when the pull request is merged, so an unmerged pull request is regenerated with anything newer on the next run.
+- **Later runs:** works published within 730 days (`--lookback-days`) before `tool.last_run`, so late-indexed works are still caught. `tool.last_run` only advances when entries are added, so after a quiet stretch the window reaches further back than 730 days from today. That only means scanning a little more. Duplicates are harmless because of section 5. `--full` forces an all-years scan, and so does `tool.full_rescan_needed` (section 9).
+- **Delivery:** a pull request is opened only when at least one new entry was added, or when a full scan lost a source and `tool.full_rescan_needed` was newly set (a pull request titled "Full rescan needed: a source failed", whose description names the source). The tool reports these as the `new_count` and `state_changed` outputs of the step, and the pull request step runs only when `new_count` is above 0 or `state_changed` is true. Any other run writes no file, opens no pull request, and leaves any open one alone. When there is something to record, the Action pushes to the fixed branch `auto/new-publications` and opens or updates one pull request. The pull request description, and the Action's run summary, is the run report: a table of the new works with the reasons each matched and any possible duplicates. Nothing reaches the default branch unreviewed. `tool.last_run` only advances when the pull request is merged, so an unmerged pull request is regenerated with anything newer on the next run.
 
 ## 9. Failure handling
 
 - A failing source is reported as a warning (a GitHub annotation in the Action), and the run continues with the other sources.
-- If any source failed, `tool.last_run` is not advanced, so the next run re-scans in full.
+- If any source failed, `tool.last_run` is not advanced. It is kept as it is, so entries found later still get `needs review`.
+- A failed **incremental** run is retried by the next run, because `tool.last_run` did not move and the next date window covers what the failed source missed.
+- A failed **full** scan (the first run, `--full`, or a rescan) is not covered that way, because the next run would use a date window and never revisit older works. So the tool sets `tool.full_rescan_needed` to `true`. The next run then scans all years whether or not `--full` is given, and clears the flag when every source answers.
+- The flag is recorded in `publications.json`, so it takes effect once the pull request that carries it is merged. If that pull request is left unmerged, the next scheduled run does not know about the flag. Re-run the workflow with the "full scan" option in that case.
+- The flag is cleared only when a run also adds entries. A rescan that succeeds with nothing new leaves the flag set, and the next run scans all years again. That is slower but harmless, and it stops once a pull request with new entries is merged.
 - If all sources fail, nothing is written and the run fails.
 - HTTP calls retry with backoff on 429 and 5xx responses, and errors include the server's message.
 

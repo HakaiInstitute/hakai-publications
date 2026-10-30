@@ -79,16 +79,17 @@ Optional environment variables:
   daily limit but is not required.
 - `GATHER_MAILTO`: a contact address sent to OpenAlex and Crossref.
 
-If a source fails, the run continues with the others and prints a warning. If any source failed,
-the next run scans in full again.
+If a source fails, the run continues with the others and prints a warning. A failed incremental run
+is retried by the next run. If a full scan loses a source, the tool records
+`tool.full_rescan_needed` in `publications.json`, and the next run scans all years again.
 
 ## Output
 
 Every entry has the same fields: `year`, `citation`, `url`, `doi`, `status`, `title`, `authors`
 (name, ORCID, Hakai flag), `hakai_authors`, `venue`, `type`, `sources`, `date_added`,
 `possible_duplicate_of` (empty when there is none) and `openalex_id`. The file also records
-`publication_count`, `last_updated` and `tool.last_run`, which change only when entries are added.
-See SPEC.md for the details.
+`publication_count`, `last_updated` and `tool.last_run`, which change only when entries are added,
+and `tool.full_rescan_needed`. See SPEC.md for the details.
 
 The `citation` is plain text in an APA 7 style: authors, year, title, venue, volume(issue), pages
 and the DOI URL. Up to 10 authors are listed in full. With more than 10, it gives the first author
@@ -108,6 +109,10 @@ works, the workflow pushes the branch `auto/new-publications` and opens (or
 updates) one pull request. Review the new entries in the pull request, set each `status`, then
 merge. `tool.last_run` only advances when the pull request is merged, so an unmerged pull request
 is simply regenerated on the next run.
+
+If a full scan loses a source, the workflow opens a pull request titled "Full rescan needed: a
+source failed" that records the flag. Merge it so the next run scans all years. If you leave it
+unmerged, run the workflow by hand with the "full scan" option instead.
 
 Each run force-pushes the `auto/new-publications` branch. If you commit review changes to that
 branch and the workflow runs again before you merge, those changes are lost. Merge before the next

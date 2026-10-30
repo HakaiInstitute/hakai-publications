@@ -550,10 +550,12 @@ def set_output(name, value):
             f.write(f"{name}={value}\n")
 
 
-def write_report(path, works, status):
+def write_report(path, works, status, note=None):
     """Markdown table for reviewers: why each new work was found and any likely duplicates."""
     cell = lambda s: (s or "").replace("|", "\\|").replace("\n", " ")
     lines = [f"## {len(works)} new publication(s), added with status `{status}`", ""]
+    if note:
+        lines += [note, ""]
     if works:
         lines += ["| Year | DOI | Title | Why it matched | Possible duplicate of |", "|---|---|---|---|---|"]
     for w in works:
@@ -592,10 +594,15 @@ def main():
     existing_dois = {norm_doi(e.get("doi")) for e in existing if e.get("doi")}
     existing_cites = [(title_key(e.get("citation")), e.get("doi")) for e in existing]
 
-    last_run = (data.get("tool") or {}).get("last_run")
+    tool_state = data.get("tool") or {}
+    last_run = tool_state.get("last_run")
+    # set when a full scan lost a source: that source's older works are only retried by another full scan
+    rescan = bool(tool_state.get("full_rescan_needed"))
     since = None
-    if last_run and not args.full:
+    if last_run and not args.full and not rescan:
         since = (date.fromisoformat(last_run[:10]) - timedelta(days=args.lookback_days)).isoformat()
+    if rescan and not args.full:
+        print("Full rescan: a previous full scan lost a source (tool.full_rescan_needed)")
     print(f"Scanning {'works published since ' + since if since else 'all years'}")
     # the initial backfill is added as "published"; later runs need review
     status = args.status or ("needs review" if last_run else "published")
@@ -611,6 +618,10 @@ def main():
             warn(f"{name} failed: {e!r}; continuing with the other sources")
     if len(failures) == 3:
         sys.exit("All sources failed; nothing written")
+    # A failed incremental run is retried by the next one, because last_run does not move. A failed
+    # full scan is not: the next run would use a date window and never revisit older works.
+    rescan_next = bool(failures) and since is None
+    flag_newly_set = rescan_next and not rescan
 
     merged = merge(found)
     # version DOIs (DataCite IsVersionOf, as reported by any source) and records that are only
@@ -640,23 +651,35 @@ def main():
     print(f"New entries get status '{status}'")
     for e in entries[:5]:
         print(f"  + [{e['year']}] {e['citation'][:140]}")
-    set_output("new_count", len(entries))  # the workflow opens a pull request only when this is above 0
+    # the workflow opens a pull request only when entries were added or the rescan flag was newly set
+    set_output("new_count", len(entries))
+    set_output("state_changed", str(flag_newly_set).lower())
     if args.dry_run:
         print("Dry run: nothing written")
         return
-    write_report(args.report, new, status)
-    if not entries:
-        # nothing was added, so leave the file alone: rewriting last_updated / last_run alone
-        # would make every run look like a change that needs review
+    note = None
+    if rescan_next:
+        note = (f"**{', '.join(failures)} failed during a full scan.** `tool.full_rescan_needed` is set, so the next "
+                "run scans all years again. This only takes effect once this pull request is merged.")
+        warn(f"{', '.join(failures)} failed during a full scan; the next run will scan all years again")
+    write_report(args.report, new, status, note)
+    if not entries and not flag_newly_set:
+        # nothing to record: rewriting last_updated / last_run alone would make every run look
+        # like a change that needs review
         print("No new publications; publications.json left unchanged")
         return
 
     data["publications"] = existing + entries
-    data["publication_count"] = sum(1 for e in data["publications"] if e.get("status") != "rejected")
-    data["last_updated"] = datetime.now().strftime("%b %d, %Y")
-    # only advance last_run when every source answered, so a failed source is retried in full
+    if entries:
+        data["publication_count"] = sum(1 for e in data["publications"] if e.get("status") != "rejected")
+        data["last_updated"] = datetime.now().strftime("%b %d, %Y")
+    tool_state = dict(data.get("tool") or {})
+    # only advance last_run when every source answered; it is kept otherwise, so later additions
+    # are still "needs review" and an incremental run's window still covers what a failed source missed
     if not failures:
-        data["tool"] = {**(data.get("tool") or {}), "last_run": datetime.now(timezone.utc).isoformat(timespec="seconds")}
+        tool_state["last_run"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    tool_state["full_rescan_needed"] = rescan_next
+    data["tool"] = tool_state
     with open(output, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
         f.write("\n")

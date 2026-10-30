@@ -34,20 +34,29 @@ jobs:
         run: python gather_publications.py --report "$RUNNER_TEMP/new-publications.md" ${{ inputs.full_scan && '--full' || '' }}
 
       - name: Open or update the review pull request
-        # only when entries were actually added; a run with nothing new changes no files
-        if: steps.gather.outputs.new_count != '0'
+        # when entries were added, or when a full scan lost a source and the rescan flag was newly
+        # set; a run with nothing to record changes no files
+        if: steps.gather.outputs.new_count != '0' || steps.gather.outputs.state_changed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
+          NEW_COUNT: ${{ steps.gather.outputs.new_count }}
         run: |
           if git diff --quiet publications.json; then
             echo "No changes to publications.json."
             exit 0
           fi
+          if [ "$NEW_COUNT" = "0" ]; then
+            title="Full rescan needed: a source failed"
+            message="Record that a full rescan is needed"
+          else
+            title="New publications for review"
+            message="Add new publications for review"
+          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -B auto/new-publications
           git add publications.json
-          git commit -m "Add new publications for review"
+          git commit -m "$message"
           # last_run only advances when the PR is merged, so an unmerged PR is simply
           # regenerated (with anything newer) on the next run
           git push --force origin auto/new-publications
@@ -57,8 +66,8 @@ jobs:
             gh pr create \
               --base "${{ github.event.repository.default_branch }}" \
               --head auto/new-publications \
-              --title "New publications for review" \
+              --title "$title" \
               --body-file "$RUNNER_TEMP/new-publications.md"
           else
-            gh pr edit auto/new-publications --body-file "$RUNNER_TEMP/new-publications.md"
+            gh pr edit auto/new-publications --title "$title" --body-file "$RUNNER_TEMP/new-publications.md"
           fi
