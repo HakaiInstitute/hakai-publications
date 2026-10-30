@@ -30,7 +30,8 @@ Included: articles, preprints, books, book chapters, theses, reports, conference
 protocols. Excluded: datasets, data management plans, and Zenodo records (unless a thesis or
 protocol).
 
-Works that are already in `publications.json` (by DOI) are never added again, including
+Works that are already in `publications.json` (by DOI, or by title and year when there is no DOI)
+are never added again, including
 rejected ones. A preprint and its published article are both kept and flagged with
 `possible_duplicate_of`.
 
@@ -133,6 +134,6 @@ to be added.
 ## Limitations
 
 - Affiliation matching depends on how each source records affiliations. A work whose record
-  omits Hakai is missed. Against the first 71 curated entries, the tool found 67.
+  omits Hakai is missed. Against the first 71 curated entries, the tool found 69.
 - Name formatting for OpenAlex authors is approximate for unusual surnames.
 - Titles are used as the source gives them, so capitalisation may not follow APA sentence case.

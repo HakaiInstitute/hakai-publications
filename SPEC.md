@@ -25,7 +25,7 @@ OpenAlex, Crossref and DataCite are all queried. Each source is searched two way
 Notes on behaviour:
 
 - OpenAlex uses page-number paging (cursor paging needs an API key). This is fine below 10,000 results per query.
-- Crossref has no affiliation filter. The tool pages through a relevance-ranked affiliation search and stops once a page contains no Hakai-affiliated author.
+- Crossref has no affiliation filter. The tool pages through a relevance-ranked text search on "Hakai Institute" and stops once a page of 200 contains no Hakai-affiliated author. This search must use offset paging: Crossref's cursor paging does not follow relevance order, so its first page is arbitrary papers. Consecutive pages overlap by half (the offset advances by 100), because ties in the ranking can reorder between requests and would otherwise drop an item on a page boundary.
 - DataCite searches creators only.
 - People without an ORCID trigger no search. Their names are compared against works already found, and a match is noted in the run report (section 8) as "name only (unverified)".
 
@@ -43,7 +43,7 @@ A work is added only if **at least one author lists Hakai on that work** (ROR `0
 **Included:** articles (including reviews, letters, editorials), preprints, books, book chapters, theses, reports, conference papers, and protocols (protocols.io DOIs, prefix `10.17504/`).
 
 **Excluded:**
-- datasets, peer reviews, errata, grants, supplementary materials
+- datasets, peer reviews, errata, grants, supplementary materials. Crossref lists corrections as ordinary articles, so any work whose title begins with "Correction", "Corrigendum", "Erratum", "Retraction" or "Expression of concern" is also excluded
 - data management plans (DMPTool DOIs, prefix `10.48321/`, or a resource type containing "plan")
 - Zenodo records (`10.5281/`) unless they are a thesis or protocol
 - version DOIs: any DOI that a DataCite record marks `IsVersionOf`. The flag is kept through merging and combined across sources, and the DOI is excluded after merging, so it stays excluded even if OpenAlex or Crossref also return it as an article or protocol, and even if its DataCite resource type is one the tool does not collect
@@ -51,7 +51,7 @@ A work is added only if **at least one author lists Hakai on that work** (ROR `0
 ## 5. Deduplication
 
 - Works are merged across sources by normalised DOI (lowercase, no URL prefix). Works without a DOI are merged by title and year.
-- A work whose DOI is already in `publications.json` is never added again. This includes entries with status `rejected`.
+- A work whose DOI is already in `publications.json` is never added again. This includes entries with status `rejected`. A work without a DOI is matched against existing entries by OpenAlex ID, or by title and year.
 - A preprint and its published article are **both kept**. Each new entry is flagged with `possible_duplicate_of` (the other DOI) when:
   - the titles match (against other new works and against existing entries), or
   - Crossref or DataCite declares a preprint relationship.
@@ -124,7 +124,7 @@ Existing entries are never edited or removed. Hand edits are preserved. New entr
 
 ## 11. Known limitations
 
-- Affiliation matching depends on how each source records affiliations. A work whose record omits Hakai is missed. Against the 71 curated entries, the tool found 67.
+- Affiliation matching depends on how each source records affiliations. A work whose record omits Hakai is missed. Against the 71 curated entries, the tool found 69.
 - Name-only matching is unverified and only annotates the run report. It never adds a work.
 - Version DOIs are recognised only from DataCite records the tool retrieves, which are found by Hakai affiliation or an author's ORCID. A version DOI whose DataCite record lacks both is not retrieved, so another source's record for it would not be excluded. Looking up each candidate DOI in DataCite directly would close this gap.
 - OpenAlex author names are split as given name and family name by the last word, with common particles (van, de, der, ...) kept in the family name. Unusual names may be formatted imperfectly.

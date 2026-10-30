@@ -1,6 +1,6 @@
 {
   "last_updated": "Oct 30, 2026",
-  "publication_count": 666,
+  "publication_count": 686,
   "publications": [
     {
       "year": "2025",
@@ -46065,9 +46065,972 @@
       "date_added": "2026-10-30",
       "possible_duplicate_of": [],
       "openalex_id": "https://openalex.org/W7137394037"
+    },
+    {
+      "year": "2025",
+      "citation": "Watts, A., et al. (2025). Guidance and best practices for species identification using eDNA metabarcoding - When do you call a cod a cod? Pensoft Publishers. https://doi.org/10.3897/arphapreprints.e175915",
+      "url": "https://doi.org/10.3897/arphapreprints.e175915",
+      "doi": "10.3897/arphapreprints.e175915",
+      "status": "needs review",
+      "title": "Guidance and best practices for species identification using eDNA metabarcoding - When do you call a cod a cod?",
+      "authors": [
+        {
+          "name": "Watts, A.",
+          "orcid": "0000-0001-9700-6393",
+          "hakai": false
+        },
+        {
+          "name": "Gold, Z.",
+          "orcid": "0000-0003-0490-7630",
+          "hakai": false
+        },
+        {
+          "name": "Patin, N.",
+          "orcid": "0000-0001-8522-7682",
+          "hakai": false
+        },
+        {
+          "name": "Adams, N.",
+          "hakai": false
+        },
+        {
+          "name": "Baker, J.",
+          "orcid": "0000-0002-0673-7535",
+          "hakai": false
+        },
+        {
+          "name": "El Baidouri, F.",
+          "hakai": false
+        },
+        {
+          "name": "Grey, E.",
+          "hakai": false
+        },
+        {
+          "name": "Holmes, A.",
+          "hakai": false
+        },
+        {
+          "name": "Jacobson, K.",
+          "hakai": false
+        },
+        {
+          "name": "Jungbluth, S.",
+          "orcid": "0000-0001-9265-8341",
+          "hakai": false
+        },
+        {
+          "name": "Kajita, T.",
+          "hakai": false
+        },
+        {
+          "name": "Kiledal, A.",
+          "hakai": false
+        },
+        {
+          "name": "Lemay, M.",
+          "hakai": true
+        },
+        {
+          "name": "Montes, E.",
+          "orcid": "0000-0002-3103-4479",
+          "hakai": false
+        },
+        {
+          "name": "Muller-Karger, F. E.",
+          "orcid": "0000-0003-3159-5011",
+          "hakai": false
+        },
+        {
+          "name": "Miller, J.",
+          "hakai": false
+        },
+        {
+          "name": "Ogburn, M.",
+          "hakai": false
+        },
+        {
+          "name": "Pitz, K.",
+          "orcid": "0000-0002-4931-8592",
+          "hakai": false
+        },
+        {
+          "name": "Silliman, K.",
+          "hakai": false
+        },
+        {
+          "name": "Thompson, A.",
+          "hakai": false
+        },
+        {
+          "name": "Thompson, L.",
+          "orcid": "0000-0002-3911-1280",
+          "hakai": false
+        }
+      ],
+      "hakai_authors": [
+        "Lemay, M."
+      ],
+      "venue": "Pensoft Publishers",
+      "type": "preprint",
+      "sources": [
+        "Crossref"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [
+        "10.3897/mbmg.10.174450"
+      ],
+      "openalex_id": null
+    },
+    {
+      "year": "2025",
+      "citation": "Arroyo-Esquivel, J., Gehman, A., Collins, K., & Sanchez, F. (2025). Managing populations after a disease outbreak: exploration of epidemiological consequences of managed host reintroduction following disease-driven host decline. openRxiv. https://doi.org/10.1101/2025.02.28.640833",
+      "url": "https://doi.org/10.1101/2025.02.28.640833",
+      "doi": "10.1101/2025.02.28.640833",
+      "status": "needs review",
+      "title": "Managing populations after a disease outbreak: exploration of epidemiological consequences of managed host reintroduction following disease-driven host decline",
+      "authors": [
+        {
+          "name": "Arroyo-Esquivel, J.",
+          "orcid": "0000-0003-4399-954X",
+          "hakai": false
+        },
+        {
+          "name": "Gehman, A.",
+          "hakai": true
+        },
+        {
+          "name": "Collins, K.",
+          "hakai": false
+        },
+        {
+          "name": "Sanchez, F.",
+          "hakai": false
+        }
+      ],
+      "hakai_authors": [
+        "Gehman, A."
+      ],
+      "venue": "openRxiv",
+      "type": "preprint",
+      "sources": [
+        "Crossref"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [
+        "10.1098/rstb.2024.0333"
+      ],
+      "openalex_id": null
+    },
+    {
+      "year": "2024",
+      "citation": "Forbes, C., Hessing-Lewis, M., & O’Connor, M. I. (2024). An experimental test of dispersal limitation of species diversity in eelgrass meadows. Springer Science and Business Media LLC. https://doi.org/10.21203/rs.3.rs-4650493/v1",
+      "url": "https://doi.org/10.21203/rs.3.rs-4650493/v1",
+      "doi": "10.21203/rs.3.rs-4650493/v1",
+      "status": "needs review",
+      "title": "An experimental test of dispersal limitation of species diversity in eelgrass meadows",
+      "authors": [
+        {
+          "name": "Forbes, C.",
+          "orcid": "0009-0009-7619-1724",
+          "hakai": false
+        },
+        {
+          "name": "Hessing-Lewis, M.",
+          "hakai": true
+        },
+        {
+          "name": "O’Connor, M. I.",
+          "hakai": false
+        }
+      ],
+      "hakai_authors": [
+        "Hessing-Lewis, M."
+      ],
+      "venue": "Springer Science and Business Media LLC",
+      "type": "preprint",
+      "sources": [
+        "Crossref"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [
+        "10.1007/s12237-024-01472-2"
+      ],
+      "openalex_id": null
+    },
+    {
+      "year": "2024",
+      "citation": "Coelho, F. A. S., et al. (2024). Ancient genomes of Sitka black-tailed deer show evidence for postglacial stepping-stone dispersal along the Pacific Northwest Coast of North America. Springer Science and Business Media LLC. https://doi.org/10.21203/rs.3.rs-5033480/v1",
+      "url": "https://doi.org/10.21203/rs.3.rs-5033480/v1",
+      "doi": "10.21203/rs.3.rs-5033480/v1",
+      "status": "needs review",
+      "title": "Ancient genomes of Sitka black-tailed deer show evidence for postglacial stepping-stone dispersal along the Pacific Northwest Coast of North America",
+      "authors": [
+        {
+          "name": "Coelho, F. A. S.",
+          "hakai": false
+        },
+        {
+          "name": "Tomlin, C. M.",
+          "hakai": false
+        },
+        {
+          "name": "Prince, K. K.",
+          "hakai": false
+        },
+        {
+          "name": "McLaren, D.",
+          "hakai": true
+        },
+        {
+          "name": "Fedje, D.",
+          "hakai": true
+        },
+        {
+          "name": "Latch, E.",
+          "hakai": false
+        },
+        {
+          "name": "Heffelfinger, J. R.",
+          "hakai": false
+        },
+        {
+          "name": "Baichtal, J.",
+          "hakai": false
+        },
+        {
+          "name": "Talbot, S. L.",
+          "hakai": false
+        },
+        {
+          "name": "Heaton, T.",
+          "hakai": false
+        },
+        {
+          "name": "Lindqvist, C.",
+          "hakai": false
+        }
+      ],
+      "hakai_authors": [
+        "McLaren, D.",
+        "Fedje, D."
+      ],
+      "venue": "Springer Science and Business Media LLC",
+      "type": "preprint",
+      "sources": [
+        "Crossref"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [
+        "10.1186/s13059-026-04233-5"
+      ],
+      "openalex_id": null
+    },
+    {
+      "year": "2024",
+      "citation": "Van Wyngaarden, M., et al. (2024). Evaluating an Autonomous eDNA Sampler for Marine Environmental Monitoring: Short- and Long-Term Applications. OCEANS 2024 - Halifax, 1-8. https://doi.org/10.1109/oceans55160.2024.10753841",
+      "url": "https://doi.org/10.1109/oceans55160.2024.10753841",
+      "doi": "10.1109/oceans55160.2024.10753841",
+      "status": "needs review",
+      "title": "Evaluating an Autonomous eDNA Sampler for Marine Environmental Monitoring: Short- and Long-Term Applications",
+      "authors": [
+        {
+          "name": "Van Wyngaarden, M.",
+          "hakai": false
+        },
+        {
+          "name": "Jeffery, N. W.",
+          "hakai": false
+        },
+        {
+          "name": "Horne, E.",
+          "hakai": false
+        },
+        {
+          "name": "Clemente-Carvalho, R. B. G.",
+          "hakai": true
+        },
+        {
+          "name": "Lemay, M.",
+          "hakai": true
+        },
+        {
+          "name": "Grundke, I.",
+          "hakai": false
+        },
+        {
+          "name": "Luy, E.",
+          "hakai": false
+        },
+        {
+          "name": "Hendricks, A.",
+          "hakai": false
+        },
+        {
+          "name": "Sonnichsen, C.",
+          "hakai": false
+        },
+        {
+          "name": "Sieben, V.",
+          "hakai": false
+        },
+        {
+          "name": "Laroche, J.",
+          "hakai": false
+        },
+        {
+          "name": "Beiko, R. G.",
+          "hakai": false
+        },
+        {
+          "name": "Furlong, A.",
+          "hakai": false
+        },
+        {
+          "name": "Knox, T.",
+          "hakai": false
+        },
+        {
+          "name": "Pettitt-Wade, H.",
+          "hakai": false
+        },
+        {
+          "name": "Stanley, R. R. E.",
+          "hakai": false
+        }
+      ],
+      "hakai_authors": [
+        "Clemente-Carvalho, R. B. G.",
+        "Lemay, M."
+      ],
+      "venue": "OCEANS 2024 - Halifax",
+      "type": "conference-paper",
+      "sources": [
+        "Crossref"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [],
+      "openalex_id": null
+    },
+    {
+      "year": "2024",
+      "citation": "Bif, M., Kellogg, C., Huang, Y., Anstett, J., Traving, S., Pena, A., Hallam, S., & Johnson, K. (2024). Marine Heatwaves Modulate Food Webs and Carbon Transport Processes. Springer Science and Business Media LLC. https://doi.org/10.21203/rs.3.rs-5256564/v1",
+      "url": "https://doi.org/10.21203/rs.3.rs-5256564/v1",
+      "doi": "10.21203/rs.3.rs-5256564/v1",
+      "status": "needs review",
+      "title": "Marine Heatwaves Modulate Food Webs and Carbon Transport Processes",
+      "authors": [
+        {
+          "name": "Bif, M.",
+          "orcid": "0000-0002-2148-4556",
+          "hakai": false
+        },
+        {
+          "name": "Kellogg, C.",
+          "hakai": true
+        },
+        {
+          "name": "Huang, Y.",
+          "hakai": false
+        },
+        {
+          "name": "Anstett, J.",
+          "hakai": false
+        },
+        {
+          "name": "Traving, S.",
+          "hakai": false
+        },
+        {
+          "name": "Pena, A.",
+          "orcid": "0000-0001-8002-3402",
+          "hakai": false
+        },
+        {
+          "name": "Hallam, S.",
+          "orcid": "0000-0002-4889-6876",
+          "hakai": false
+        },
+        {
+          "name": "Johnson, K.",
+          "orcid": "0000-0001-5513-5584",
+          "hakai": false
+        }
+      ],
+      "hakai_authors": [
+        "Kellogg, C."
+      ],
+      "venue": "Springer Science and Business Media LLC",
+      "type": "preprint",
+      "sources": [
+        "Crossref"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [
+        "10.1038/s41467-025-63605-w"
+      ],
+      "openalex_id": null
+    },
+    {
+      "year": "2023",
+      "citation": "Holt, C. C., Hehenberger, E., Tikhonenkov, D. V., Jacko-Reynolds, V. K. L., Okamoto, N., Cooney, E. C., Irwin, N. A. T., & Keeling, P. J. (2023). Multiple parallel origins of parasitic Marine Alveolates. Springer Science and Business Media LLC. https://doi.org/10.21203/rs.3.rs-1472581/v2",
+      "url": "https://doi.org/10.21203/rs.3.rs-1472581/v2",
+      "doi": "10.21203/rs.3.rs-1472581/v2",
+      "status": "needs review",
+      "title": "Multiple parallel origins of parasitic Marine Alveolates",
+      "authors": [
+        {
+          "name": "Holt, C. C.",
+          "orcid": "0000-0003-4222-6086",
+          "hakai": false
+        },
+        {
+          "name": "Hehenberger, E.",
+          "orcid": "0000-0001-7810-1336",
+          "hakai": false
+        },
+        {
+          "name": "Tikhonenkov, D. V.",
+          "orcid": "0000-0002-4882-2148",
+          "hakai": false
+        },
+        {
+          "name": "Jacko-Reynolds, V. K. L.",
+          "hakai": false
+        },
+        {
+          "name": "Okamoto, N.",
+          "hakai": true
+        },
+        {
+          "name": "Cooney, E. C.",
+          "hakai": false
+        },
+        {
+          "name": "Irwin, N. A. T.",
+          "orcid": "0000-0002-2904-8214",
+          "hakai": false
+        },
+        {
+          "name": "Keeling, P. J.",
+          "orcid": "0000-0002-7644-0745",
+          "hakai": false
+        }
+      ],
+      "hakai_authors": [
+        "Okamoto, N."
+      ],
+      "venue": "Springer Science and Business Media LLC",
+      "type": "preprint",
+      "sources": [
+        "Crossref"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [
+        "10.1038/s41467-023-42807-0"
+      ],
+      "openalex_id": null
+    },
+    {
+      "year": "2021",
+      "citation": "Burnham, R., Vagle, S., Thupaki, P., & O'Neill, C. (2021). Soundscapes experienced by southern resident killer whales (<i>Orcinus orca</i>) in the Salish Sea and implications of vessel noise. The Journal of the Acoustical Society of America, 150(4_Supplement), A251-A251. https://doi.org/10.1121/10.0008187",
+      "url": "https://doi.org/10.1121/10.0008187",
+      "doi": "10.1121/10.0008187",
+      "status": "needs review",
+      "title": "Soundscapes experienced by southern resident killer whales (<i>Orcinus orca</i>) in the Salish Sea and implications of vessel noise",
+      "authors": [
+        {
+          "name": "Burnham, R.",
+          "hakai": false
+        },
+        {
+          "name": "Vagle, S.",
+          "hakai": false
+        },
+        {
+          "name": "Thupaki, P.",
+          "hakai": true
+        },
+        {
+          "name": "O'Neill, C.",
+          "hakai": false
+        }
+      ],
+      "hakai_authors": [
+        "Thupaki, P."
+      ],
+      "venue": "The Journal of the Acoustical Society of America",
+      "type": "article",
+      "sources": [
+        "Crossref"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [],
+      "openalex_id": null
+    },
+    {
+      "year": "2019",
+      "citation": "Jacoby, D., Wynden, A., Gao, B., Giannini, F. C., Costa, M., & Coady, Y. (2019). Geospatial Computing Collaborations. 2019 IEEE Pacific Rim Conference on Communications, Computers and Signal Processing (PACRIM), 1-8. https://doi.org/10.1109/pacrim47961.2019.8985053",
+      "url": "https://doi.org/10.1109/pacrim47961.2019.8985053",
+      "doi": "10.1109/pacrim47961.2019.8985053",
+      "status": "needs review",
+      "title": "Geospatial Computing Collaborations",
+      "authors": [
+        {
+          "name": "Jacoby, D.",
+          "hakai": false
+        },
+        {
+          "name": "Wynden, A.",
+          "hakai": false
+        },
+        {
+          "name": "Gao, B.",
+          "hakai": false
+        },
+        {
+          "name": "Giannini, F. C.",
+          "hakai": true
+        },
+        {
+          "name": "Costa, M.",
+          "hakai": false
+        },
+        {
+          "name": "Coady, Y.",
+          "hakai": false
+        }
+      ],
+      "hakai_authors": [
+        "Giannini, F. C."
+      ],
+      "venue": "2019 IEEE Pacific Rim Conference on Communications, Computers and Signal Processing (PACRIM)",
+      "type": "conference-paper",
+      "sources": [
+        "Crossref"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [],
+      "openalex_id": null
+    },
+    {
+      "year": "2016",
+      "citation": "Mori, A. S., Lertzman, K. P., & Gustafsson, L. (2016). Biodiversity and ecosystem services in forest ecosystems: a research agenda for applied forest ecology. Journal of Applied Ecology, 54(1), 12-27. https://doi.org/10.1111/1365-2664.12669",
+      "url": "https://doi.org/10.1111/1365-2664.12669",
+      "doi": "10.1111/1365-2664.12669",
+      "status": "needs review",
+      "title": "Biodiversity and ecosystem services in forest ecosystems: a research agenda for applied forest ecology",
+      "authors": [
+        {
+          "name": "Mori, A. S.",
+          "hakai": true
+        },
+        {
+          "name": "Lertzman, K. P.",
+          "hakai": true
+        },
+        {
+          "name": "Gustafsson, L.",
+          "hakai": false
+        }
+      ],
+      "hakai_authors": [
+        "Mori, A. S.",
+        "Lertzman, K. P."
+      ],
+      "venue": "Journal of Applied Ecology",
+      "type": "article",
+      "sources": [
+        "Crossref"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [],
+      "openalex_id": null
+    },
+    {
+      "year": "2016",
+      "citation": "Moore, M., von der Porten, S., & Castleden, H. (2016). Consultation is not consent: hydraulic fracturing and water governance on Indigenous lands in Canada. WIREs Water, 4(1). https://doi.org/10.1002/wat2.1180",
+      "url": "https://doi.org/10.1002/wat2.1180",
+      "doi": "10.1002/wat2.1180",
+      "status": "needs review",
+      "title": "Consultation is not consent: hydraulic fracturing and water governance on Indigenous lands in Canada",
+      "authors": [
+        {
+          "name": "Moore, M.",
+          "hakai": false
+        },
+        {
+          "name": "von der Porten, S.",
+          "hakai": true
+        },
+        {
+          "name": "Castleden, H.",
+          "hakai": false
+        }
+      ],
+      "hakai_authors": [
+        "von der Porten, S."
+      ],
+      "venue": "WIREs Water",
+      "type": "article",
+      "sources": [
+        "Crossref"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [],
+      "openalex_id": null
+    },
+    {
+      "year": "2015",
+      "citation": "Davidson, S., & von der Porten, S. (2015). Conclusion. Water as a Social Opportunity, 157-167. https://doi.org/10.1515/9781553394372-012",
+      "url": "https://doi.org/10.1515/9781553394372-012",
+      "doi": "10.1515/9781553394372-012",
+      "status": "needs review",
+      "title": "Conclusion",
+      "authors": [
+        {
+          "name": "Davidson, S.",
+          "hakai": false
+        },
+        {
+          "name": "von der Porten, S.",
+          "hakai": true
+        }
+      ],
+      "hakai_authors": [
+        "von der Porten, S."
+      ],
+      "venue": "Water as a Social Opportunity",
+      "type": "book-chapter",
+      "sources": [
+        "Crossref"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [],
+      "openalex_id": null
+    },
+    {
+      "year": "2015",
+      "citation": "Nelson, M. C., Hocking, M. D., Harding, J. N., Harding, J. M. S., & Reynolds, J. D. (2015). Quantifying the effects of stream habitat on populations of breeding Pacific salmon. Canadian Journal of Fisheries and Aquatic Sciences, 72(10), 1469-1476. https://doi.org/10.1139/cjfas-2014-0253",
+      "url": "https://doi.org/10.1139/cjfas-2014-0253",
+      "doi": "10.1139/cjfas-2014-0253",
+      "status": "needs review",
+      "title": "Quantifying the effects of stream habitat on populations of breeding Pacific salmon",
+      "authors": [
+        {
+          "name": "Nelson, M. C.",
+          "hakai": false
+        },
+        {
+          "name": "Hocking, M. D.",
+          "hakai": true
+        },
+        {
+          "name": "Harding, J. N.",
+          "hakai": true
+        },
+        {
+          "name": "Harding, J. M. S.",
+          "hakai": true
+        },
+        {
+          "name": "Reynolds, J. D.",
+          "hakai": true
+        }
+      ],
+      "hakai_authors": [
+        "Hocking, M. D.",
+        "Harding, J. N.",
+        "Harding, J. M. S.",
+        "Reynolds, J. D."
+      ],
+      "venue": "Canadian Journal of Fisheries and Aquatic Sciences",
+      "type": "article",
+      "sources": [
+        "Crossref"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [],
+      "openalex_id": null
+    },
+    {
+      "year": "2014",
+      "citation": "Stocks, A. P., Pakhomov, E. A., & Hunt, B. P. V. (2014). A simple method to assess the marine environment residence duration of juvenile sockeye salmon (<i>Oncorhynchus nerka</i>) using laser ablation. Canadian Journal of Fisheries and Aquatic Sciences, 71(10), 1437-1446. https://doi.org/10.1139/cjfas-2014-0073",
+      "url": "https://doi.org/10.1139/cjfas-2014-0073",
+      "doi": "10.1139/cjfas-2014-0073",
+      "status": "needs review",
+      "title": "A simple method to assess the marine environment residence duration of juvenile sockeye salmon (<i>Oncorhynchus nerka</i>) using laser ablation",
+      "authors": [
+        {
+          "name": "Stocks, A. P.",
+          "hakai": false
+        },
+        {
+          "name": "Pakhomov, E. A.",
+          "hakai": true
+        },
+        {
+          "name": "Hunt, B. P. V.",
+          "hakai": true
+        }
+      ],
+      "hakai_authors": [
+        "Pakhomov, E. A.",
+        "Hunt, B. P. V."
+      ],
+      "venue": "Canadian Journal of Fisheries and Aquatic Sciences",
+      "type": "article",
+      "sources": [
+        "Crossref"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [],
+      "openalex_id": null
+    },
+    {
+      "year": "2014",
+      "citation": "Swain, N. R., Hocking, M. D., Harding, J. N., & Reynolds, J. D. (2014). Effects of salmon on the diet and condition of stream-resident sculpins. Canadian Journal of Fisheries and Aquatic Sciences, 71(4), 521-532. https://doi.org/10.1139/cjfas-2013-0159",
+      "url": "https://doi.org/10.1139/cjfas-2013-0159",
+      "doi": "10.1139/cjfas-2013-0159",
+      "status": "needs review",
+      "title": "Effects of salmon on the diet and condition of stream-resident sculpins",
+      "authors": [
+        {
+          "name": "Swain, N. R.",
+          "hakai": false
+        },
+        {
+          "name": "Hocking, M. D.",
+          "hakai": true
+        },
+        {
+          "name": "Harding, J. N.",
+          "hakai": true
+        },
+        {
+          "name": "Reynolds, J. D.",
+          "hakai": true
+        }
+      ],
+      "hakai_authors": [
+        "Hocking, M. D.",
+        "Harding, J. N.",
+        "Reynolds, J. D."
+      ],
+      "venue": "Canadian Journal of Fisheries and Aquatic Sciences",
+      "type": "article",
+      "sources": [
+        "Crossref"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [],
+      "openalex_id": null
+    },
+    {
+      "year": "2014",
+      "citation": "Bryan, H. M., Smits, J. E. G., Koren, L., Paquet, P. C., Wynne‐Edwards, K. E., & Musiani, M. (2014). Heavily hunted wolves have higher stress and reproductive steroids than wolves with lower hunting pressure. Functional Ecology, 29(3), 347-356. https://doi.org/10.1111/1365-2435.12354",
+      "url": "https://doi.org/10.1111/1365-2435.12354",
+      "doi": "10.1111/1365-2435.12354",
+      "status": "needs review",
+      "title": "Heavily hunted wolves have higher stress and reproductive steroids than wolves with lower hunting pressure",
+      "authors": [
+        {
+          "name": "Bryan, H. M.",
+          "hakai": true
+        },
+        {
+          "name": "Smits, J. E. G.",
+          "hakai": false
+        },
+        {
+          "name": "Koren, L.",
+          "hakai": false
+        },
+        {
+          "name": "Paquet, P. C.",
+          "hakai": false
+        },
+        {
+          "name": "Wynne‐Edwards, K. E.",
+          "hakai": false
+        },
+        {
+          "name": "Musiani, M.",
+          "hakai": false
+        }
+      ],
+      "hakai_authors": [
+        "Bryan, H. M."
+      ],
+      "venue": "Functional Ecology",
+      "type": "article",
+      "sources": [
+        "Crossref"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [],
+      "openalex_id": null
+    },
+    {
+      "year": "2014",
+      "citation": "Harding, J. N., Harding, J. M. S., & Reynolds, J. D. (2014). Movers and shakers: nutrient subsidies and benthic disturbance predict biofilm biomass and stable isotope signatures in coastal streams. Freshwater Biology, 59(7), 1361-1377. https://doi.org/10.1111/fwb.12351",
+      "url": "https://doi.org/10.1111/fwb.12351",
+      "doi": "10.1111/fwb.12351",
+      "status": "needs review",
+      "title": "Movers and shakers: nutrient subsidies and benthic disturbance predict biofilm biomass and stable isotope signatures in coastal streams",
+      "authors": [
+        {
+          "name": "Harding, J. N.",
+          "hakai": true
+        },
+        {
+          "name": "Harding, J. M. S.",
+          "hakai": true
+        },
+        {
+          "name": "Reynolds, J. D.",
+          "hakai": true
+        }
+      ],
+      "hakai_authors": [
+        "Harding, J. N.",
+        "Harding, J. M. S.",
+        "Reynolds, J. D."
+      ],
+      "venue": "Freshwater Biology",
+      "type": "article",
+      "sources": [
+        "Crossref"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [],
+      "openalex_id": null
+    },
+    {
+      "year": "2014",
+      "citation": "Benner, J., Lertzman, K., & Pinkerton, E. W. (2014). Social contracts and community forestry: how can we design forest policies and tenure arrangements to generate local benefits? Canadian Journal of Forest Research, 44(8), 903-913. https://doi.org/10.1139/cjfr-2013-0405",
+      "url": "https://doi.org/10.1139/cjfr-2013-0405",
+      "doi": "10.1139/cjfr-2013-0405",
+      "status": "needs review",
+      "title": "Social contracts and community forestry: how can we design forest policies and tenure arrangements to generate local benefits?",
+      "authors": [
+        {
+          "name": "Benner, J.",
+          "hakai": true
+        },
+        {
+          "name": "Lertzman, K.",
+          "hakai": true
+        },
+        {
+          "name": "Pinkerton, E. W.",
+          "hakai": false
+        }
+      ],
+      "hakai_authors": [
+        "Benner, J.",
+        "Lertzman, K."
+      ],
+      "venue": "Canadian Journal of Forest Research",
+      "type": "article",
+      "sources": [
+        "Crossref"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [],
+      "openalex_id": null
+    },
+    {
+      "year": "2013",
+      "citation": "Hocking, M. D., Dulvy, N. K., Reynolds, J. D., Ring, R. A., & Reimchen, T. E. (2013). Salmon subsidize an escape from a size spectrum. Proceedings of the Royal Society B: Biological Sciences, 280(1753), 20122433. https://doi.org/10.1098/rspb.2012.2433",
+      "url": "https://doi.org/10.1098/rspb.2012.2433",
+      "doi": "10.1098/rspb.2012.2433",
+      "status": "needs review",
+      "title": "Salmon subsidize an escape from a size spectrum",
+      "authors": [
+        {
+          "name": "Hocking, M. D.",
+          "hakai": true
+        },
+        {
+          "name": "Dulvy, N. K.",
+          "hakai": false
+        },
+        {
+          "name": "Reynolds, J. D.",
+          "hakai": true
+        },
+        {
+          "name": "Ring, R. A.",
+          "hakai": false
+        },
+        {
+          "name": "Reimchen, T. E.",
+          "hakai": false
+        }
+      ],
+      "hakai_authors": [
+        "Hocking, M. D.",
+        "Reynolds, J. D."
+      ],
+      "venue": "Proceedings of the Royal Society B: Biological Sciences",
+      "type": "article",
+      "sources": [
+        "Crossref"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [],
+      "openalex_id": null
+    },
+    {
+      "year": "2020",
+      "citation": "Brookson, C. B., Krkošek, M., Hunt, B. P. V., Johnson, B. T., Rogers, L. A., & Godwin, S. C. (2020). Differential infestation of juvenile Pacific salmon by parasitic sea lice in British Columbia, Canada. Canadian Journal of Fisheries and Aquatic Sciences, 77(12), 1960-1968. https://doi.org/10.1139/cjfas-2020-0160",
+      "url": "https://doi.org/10.1139/cjfas-2020-0160",
+      "doi": "10.1139/cjfas-2020-0160",
+      "status": "needs review",
+      "title": "Differential infestation of juvenile Pacific salmon by parasitic sea lice in British Columbia, Canada",
+      "authors": [
+        {
+          "name": "Brookson, C. B.",
+          "hakai": false
+        },
+        {
+          "name": "Krkošek, M.",
+          "hakai": false
+        },
+        {
+          "name": "Hunt, B. P. V.",
+          "hakai": true
+        },
+        {
+          "name": "Johnson, B. T.",
+          "hakai": true
+        },
+        {
+          "name": "Rogers, L. A.",
+          "hakai": false
+        },
+        {
+          "name": "Godwin, S. C.",
+          "hakai": false
+        }
+      ],
+      "hakai_authors": [
+        "Hunt, B. P. V.",
+        "Johnson, B. T."
+      ],
+      "venue": "Canadian Journal of Fisheries and Aquatic Sciences",
+      "type": "article",
+      "sources": [
+        "Crossref"
+      ],
+      "date_added": "2026-10-30",
+      "possible_duplicate_of": [],
+      "openalex_id": null
     }
   ],
   "tool": {
-    "last_run": "2026-10-30T18:44:19+00:00"
+    "last_run": "2026-10-30T20:30:19+00:00",
+    "full_rescan_needed": false
   }
 }

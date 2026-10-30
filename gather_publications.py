@@ -364,10 +364,14 @@ def fetch_crossref(orcids, since):
     select = "DOI,title,author,issued,type,container-title,publisher,volume,issue,page,relation"
     raw, seen = [], set()
 
-    def pull(extra_filters, query=None, stop_when_no_hakai=False):
-        cursor = "*"
-        while cursor:
-            params = {"rows": 200, "cursor": cursor, "select": select}
+    def pull(extra_filters, query=None):
+        # A ranked text search must use offset paging: cursor paging does not follow relevance
+        # order, so its first page is arbitrary papers (which made this search return nothing).
+        ranked = query is not None
+        cursor, offset = "*", 0
+        while True:
+            params = {"rows": 200, "select": select}
+            params.update({"offset": offset} if ranked else {"cursor": cursor})
             if extra_filters or base:
                 params["filter"] = ",".join(base + extra_filters)
             if query:
@@ -380,16 +384,25 @@ def fetch_crossref(orcids, since):
             for it in items:
                 hakai = any(is_hakai(*[x.get("name") for x in a.get("affiliation") or [] if x.get("name")]) for a in it.get("author") or [])
                 hits += hakai
-                if it["DOI"] not in seen and (hakai or not stop_when_no_hakai):
+                if it["DOI"] not in seen and (hakai or not ranked):
                     seen.add(it["DOI"])
                     raw.append(it)
-            if not items or (stop_when_no_hakai and hits == 0):
-                break  # affiliation search is ranked by relevance, so stop once it dries up
-            cursor = m.get("next-cursor")
+            if not items:
+                break
+            if ranked:
+                # pages overlap by half: ties in the ranking can reorder between requests, which would
+                # otherwise drop an item sitting on a page boundary (duplicates are skipped via `seen`)
+                offset += 100
+                if hits == 0 or offset >= 10000:
+                    break  # results are ranked by relevance, so stop once a page has no Hakai authors
+            else:
+                cursor = m.get("next-cursor")
+                if not cursor:
+                    break
 
     for orcid in orcids:
         pull([f"orcid:{orcid}"])
-    pull([], query="Hakai Institute", stop_when_no_hakai=True)
+    pull([], query="Hakai Institute")
     return [w for w in map(parse_crossref, raw) if w]
 
 
@@ -447,6 +460,10 @@ def merge(works):
                         a["hakai_affil"] = a["hakai_affil"] or b["hakai_affil"]
                         a["orcid"] = a["orcid"] or b["orcid"]
     return list(merged.values())
+
+
+# Crossref lists corrections and similar notices as ordinary journal articles; spot them by title
+ERRATUM_RE = re.compile(r"^\s*(corrections?|corrigend(um|a)|errat(um|a)|retractions?|expressions? of concern)\b", re.I)
 
 
 def is_unwanted_zenodo(w):
@@ -593,6 +610,10 @@ def main():
     existing = data.get("publications", [])
     existing_dois = {norm_doi(e.get("doi")) for e in existing if e.get("doi")}
     existing_cites = [(title_key(e.get("citation")), e.get("doi")) for e in existing]
+    existing_oa = {e["openalex_id"] for e in existing if e.get("openalex_id")}
+    existing_nodoi = {
+        (title_key(e.get("title")), str(e.get("year") or "")) for e in existing if not e.get("doi") and e.get("title")
+    }
 
     tool_state = data.get("tool") or {}
     last_run = tool_state.get("last_run")
@@ -629,8 +650,17 @@ def main():
     versions = [w for w in merged if w["is_version"]]
     merged = [w for w in merged if not w["is_version"] and w["type"]]
     print(f"Excluded {len(versions)} version DOI(s)")
-    kept = [w for w in merged if annotate(w, by_orcid, name_only) and not is_unwanted_zenodo(w)]
-    new = [w for w in kept if not (w["doi"] and w["doi"] in existing_dois)]
+    kept = [
+        w for w in merged
+        if annotate(w, by_orcid, name_only) and not is_unwanted_zenodo(w) and not ERRATUM_RE.match(w["title"])
+    ]
+    # already in the list: by DOI, or (for works without one) by OpenAlex ID or title and year
+    new = [
+        w for w in kept
+        if not (w["doi"] and w["doi"] in existing_dois)
+        and not (w["openalex_id"] and w["openalex_id"] in existing_oa)
+        and not (not w["doi"] and (title_key(w["title"]), str(w["year"] or "")) in existing_nodoi)
+    ]
     print(f"{len(merged)} unique works, {len(kept)} with Hakai affiliation, {len(new)} not yet in {args.publications}")
 
     # flag (never drop) likely preprint/article pairs, within the new works and against existing entries
