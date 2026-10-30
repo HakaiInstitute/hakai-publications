@@ -452,7 +452,7 @@ def is_unwanted_zenodo(w):
         w["doi"]
         and w["doi"].startswith("10.5281/")
         and w["type"] not in ("thesis", "protocol")
-        and not re.search(r"protocol|thesis|dissertation", w["title"], re.I)
+        and not re.search(r"\b(?:protocols?|thesis|dissertations?)\b", w["title"], re.I)
     )
 
 
