@@ -603,7 +603,12 @@ def main():
         sys.exit("All sources failed; nothing written")
 
     merged = merge(found)
-    kept = [w for w in merged if annotate(w, by_orcid, name_only) and not is_unwanted_zenodo(w)]
+    kept = [
+        w for w in merged
+        if annotate(w, by_orcid, name_only)
+        and not is_unwanted_zenodo(w)
+        and not (w["doi"] and w["doi"].startswith(EXCLUDED_PREFIXES))
+    ]
     new = [w for w in kept if not (w["doi"] and w["doi"] in existing_dois)]
     print(f"{len(merged)} unique works, {len(kept)} with Hakai affiliation, {len(new)} not yet in {args.publications}")
 
