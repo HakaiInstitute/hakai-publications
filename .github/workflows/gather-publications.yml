@@ -30,7 +30,7 @@ jobs:
         env:
           OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
           GATHER_MAILTO: ${{ vars.GATHER_MAILTO }}
-        run: python gather_publications.py ${{ inputs.full_scan && '--full' || '' }}
+        run: python gather_publications.py --report "$RUNNER_TEMP/new-publications.md" ${{ inputs.full_scan && '--full' || '' }}
 
       - name: Open or update the review pull request
         env:
@@ -48,10 +48,14 @@ jobs:
           # last_run only advances when the PR is merged, so an unmerged PR is simply
           # regenerated (with anything newer) on the next run
           git push --force origin auto/new-publications
+          # the report lists why each work matched; set each status to published or rejected
+          # (rejected works are never re-added), then merge
           if [ "$(gh pr list --head auto/new-publications --state open --json number --jq length)" = "0" ]; then
             gh pr create \
               --base "${{ github.event.repository.default_branch }}" \
               --head auto/new-publications \
               --title "New publications for review" \
-              --body "Entries added with status \`needs review\`. Set each to \`published\` or \`rejected\` (rejected works are never re-added), then merge."
+              --body-file "$RUNNER_TEMP/new-publications.md"
+          else
+            gh pr edit auto/new-publications --body-file "$RUNNER_TEMP/new-publications.md"
           fi

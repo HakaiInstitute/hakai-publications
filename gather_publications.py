@@ -1,5 +1,5 @@
 """Gather new publications by Hakai-affiliated authors from OpenAlex, Crossref
-and DataCite, and append them to publications.json with status "needs review".
+and DataCite, and append them to publications.json.
 
 A work is added when at least one of its authors lists the Hakai Institute
 (ROR 02pry0c91, or "Hakai" in the affiliation text) on that work. It is found
@@ -7,8 +7,13 @@ either through an ORCID in hakai_authors.csv or through a Hakai affiliation
 search. Existing entries are never edited or removed, so hand edits and
 "rejected" statuses are kept and rejected works are not re-added.
 
+New entries get status "published" on the first run (the initial backfill) and
+"needs review" on every later run. Each entry has a plain-text citation in an
+APA 7 style: up to 10 authors in full, otherwise "First, A., et al.".
+
 Usage:
     python gather_publications.py [--dry-run] [--full] [--lookback-days N]
+                                  [--status STATUS] [--report report.md]
                                   [--authors hakai_authors.csv]
                                   [--publications publications.json]
                                   [--output publications.json]
@@ -464,19 +469,29 @@ def annotate(w, by_orcid, name_only):
     return any(a["hakai_affil"] for a in w["authors"])
 
 
-# ---- APA 7 citation --------------------------------------------------------
-def apa_authors(authors):
-    names = [fmt_name(a["family"], a["given"]) for a in authors if a["family"]]
+# ---- citation (APA 7 style, shortened for long author lists) ----------------
+MAX_CITED_AUTHORS = 10  # longer author lists are cited as "First, A., et al."
+
+
+def join_names(names):
+    """Author part of a citation from already formatted names ('Family, G.')."""
     if not names:
         return ""
-    if len(names) > 20:
-        return ", ".join(names[:19]) + ", . . . " + names[-1]
+    if len(names) > MAX_CITED_AUTHORS:
+        return f"{names[0]}, et al."
     if len(names) == 1:
         return names[0]
     return ", ".join(names[:-1]) + ", & " + names[-1]
 
 
+def apa_authors(authors):
+    return join_names([fmt_name(a["family"], a["given"]) for a in authors if a["family"]])
+
+
 def apa_citation(w):
+    """Authors (Year). Title. Venue, volume(issue), pages. DOI URL, as plain text.
+    Not strict APA 7: lists of more than MAX_CITED_AUTHORS authors become "First, A., et al."
+    (APA 7 would list up to 20)."""
     auth = apa_authors(w["authors"])
     title = w["title"].rstrip()
     head = f"{auth} " if auth else ""
@@ -511,14 +526,28 @@ def to_entry(w, today, status):
         "venue": w["venue"] or "",
         "type": w["type"],
         "sources": sorted(w["sources"]),
-        "match_reasons": w["match_reasons"],
         "date_added": today,
+        "possible_duplicate_of": sorted(w.get("possible_duplicate_of") or []),
+        "openalex_id": w["openalex_id"],
     }
-    if w["openalex_id"]:
-        entry["openalex_id"] = w["openalex_id"]
-    if w.get("possible_duplicate_of"):
-        entry["possible_duplicate_of"] = sorted(w["possible_duplicate_of"])
     return entry
+
+
+def write_report(path, works, status):
+    """Markdown table for reviewers: why each new work was found and any likely duplicates."""
+    cell = lambda s: (s or "").replace("|", "\\|").replace("\n", " ")
+    lines = [f"## {len(works)} new publication(s), added with status `{status}`", ""]
+    if works:
+        lines += ["| Year | DOI | Title | Why it matched | Possible duplicate of |", "|---|---|---|---|---|"]
+    for w in works:
+        doi = f"[{w['doi']}](https://doi.org/{w['doi']})" if w["doi"] else ""
+        dup = ", ".join(sorted(w.get("possible_duplicate_of") or []))
+        lines.append(f"| {w['year'] or ''} | {doi} | {cell(w['title'])[:110]} | {cell('; '.join(w['match_reasons']))} | {dup} |")
+    text = "\n".join(lines) + "\n"
+    for target, mode in ((path, "w"), (os.environ.get("GITHUB_STEP_SUMMARY"), "a")):
+        if target:
+            with open(target, mode, encoding="utf-8") as f:
+                f.write(text)
 
 
 def main():
@@ -529,6 +558,7 @@ def main():
     ap.add_argument("--full", action="store_true", help="ignore last_run and scan all years")
     ap.add_argument("--lookback-days", type=int, default=730, help="publication-date window for incremental runs")
     ap.add_argument("--status", default=None, help="status for new entries (default: 'published' on the first run, else 'needs review')")
+    ap.add_argument("--report", default=None, help="write a markdown table of the new works and why they matched")
     ap.add_argument("--dry-run", action="store_true", help="print a summary and write nothing")
     args = ap.parse_args()
     output = args.output or args.publications
@@ -583,13 +613,15 @@ def main():
         w["possible_duplicate_of"] = dup
 
     today = date.today().isoformat()
-    entries = [to_entry(w, today, status) for w in sorted(new, key=lambda w: (-(w["year"] or 0), w["title"]))]
+    new = sorted(new, key=lambda w: (-(w["year"] or 0), w["title"]))
+    entries = [to_entry(w, today, status) for w in new]
     print(f"New entries get status '{status}'")
     for e in entries[:5]:
         print(f"  + [{e['year']}] {e['citation'][:140]}")
     if args.dry_run:
         print("Dry run: nothing written")
         return
+    write_report(args.report, new, status)
 
     data["publications"] = existing + entries
     data["publication_count"] = sum(1 for e in data["publications"] if e.get("status") != "rejected")
