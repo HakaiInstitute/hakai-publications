@@ -283,15 +283,16 @@ def parse_datacite(d):
     doi = norm_doi(a.get("doi"))
     types = a.get("types") or {}
     general, specific = types.get("resourceTypeGeneral"), (types.get("resourceType") or "")
-    if re.search(r"plan", specific, re.I) or (doi and doi.startswith(EXCLUDED_PREFIXES)):
-        return None
-    wtype = DATACITE_TYPES.get(general)
-    if re.search(r"protocol", specific, re.I) or (doi and doi.startswith(PROTOCOL_PREFIXES)):
+    excluded = bool(re.search(r"plan", specific, re.I) or (doi and doi.startswith(EXCLUDED_PREFIXES)))
+    wtype = None if excluded else DATACITE_TYPES.get(general)
+    if not excluded and (re.search(r"protocol", specific, re.I) or (doi and doi.startswith(PROTOCOL_PREFIXES))):
         wtype = "protocol"
-    if wtype is None:
-        return None
     related = a.get("relatedIdentifiers") or []
     is_version = any(r.get("relationType") == "IsVersionOf" for r in related)
+    if wtype is None and not is_version:
+        return None
+    # A version DOI of an unwanted type is still returned (with type None). It is evidence that this
+    # DOI must be excluded even if another source returns it as an article; main() drops it after merging.
     authors = []
     for c in a.get("creators") or []:
         affils = []
@@ -409,7 +410,7 @@ def fetch_datacite(orcids, since):
                     seen.add(d["id"])
                     raw.append(d)
             url, params = (j.get("links") or {}).get("next") if j.get("data") else None, None
-    return [w for w in map(parse_datacite, raw) if w and not w["is_version"]]
+    return [w for w in map(parse_datacite, raw) if w]  # version DOIs are excluded after merging
 
 
 # ---- merge and filter ------------------------------------------------------
@@ -427,6 +428,7 @@ def merge(works):
         m = merged[k]
         m["sources"] |= w["sources"]
         m["related_dois"] |= w["related_dois"]
+        m["is_version"] = m["is_version"] or w["is_version"]  # any source marking it a version is enough
         for f in ("title", "year", "type", "venue", "volume", "issue", "pages", "openalex_id"):
             m[f] = m[f] or w[f]
         if not m["authors"]:
@@ -533,6 +535,14 @@ def to_entry(w, today, status):
     return entry
 
 
+def set_output(name, value):
+    """Expose a value to later steps of a GitHub Actions job (no-op elsewhere)."""
+    path = os.environ.get("GITHUB_OUTPUT")
+    if path:
+        with open(path, "a", encoding="utf-8") as f:
+            f.write(f"{name}={value}\n")
+
+
 def write_report(path, works, status):
     """Markdown table for reviewers: why each new work was found and any likely duplicates."""
     cell = lambda s: (s or "").replace("|", "\\|").replace("\n", " ")
@@ -587,7 +597,7 @@ def main():
     for name, fetch in (("OpenAlex", fetch_openalex), ("Crossref", fetch_crossref), ("DataCite", fetch_datacite)):
         try:
             works = fetch(sorted(by_orcid), since)
-            print(f"  {name}: {len(works)} works of the wanted types")
+            print(f"  {name}: {sum(1 for w in works if w['type'])} works of the wanted types")
             found += works
         except Exception as e:  # keep going with the other sources
             failures.append(name)
@@ -596,6 +606,11 @@ def main():
         sys.exit("All sources failed; nothing written")
 
     merged = merge(found)
+    # version DOIs (DataCite IsVersionOf, as reported by any source) and records that are only
+    # evidence of one (no wanted type) are dropped now that every source has been merged
+    versions = [w for w in merged if w["is_version"]]
+    merged = [w for w in merged if not w["is_version"] and w["type"]]
+    print(f"Excluded {len(versions)} version DOI(s)")
     kept = [w for w in merged if annotate(w, by_orcid, name_only) and not is_unwanted_zenodo(w)]
     new = [w for w in kept if not (w["doi"] and w["doi"] in existing_dois)]
     print(f"{len(merged)} unique works, {len(kept)} with Hakai affiliation, {len(new)} not yet in {args.publications}")
@@ -618,10 +633,16 @@ def main():
     print(f"New entries get status '{status}'")
     for e in entries[:5]:
         print(f"  + [{e['year']}] {e['citation'][:140]}")
+    set_output("new_count", len(entries))  # the workflow opens a pull request only when this is above 0
     if args.dry_run:
         print("Dry run: nothing written")
         return
     write_report(args.report, new, status)
+    if not entries:
+        # nothing was added, so leave the file alone: rewriting last_updated / last_run alone
+        # would make every run look like a change that needs review
+        print("No new publications; publications.json left unchanged")
+        return
 
     data["publications"] = existing + entries
     data["publication_count"] = sum(1 for e in data["publications"] if e.get("status") != "rejected")

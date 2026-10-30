@@ -27,17 +27,20 @@ jobs:
           python-version: "3.12"
 
       - name: Gather new publications
+        id: gather
         env:
           OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
           GATHER_MAILTO: ${{ vars.GATHER_MAILTO }}
         run: python gather_publications.py --report "$RUNNER_TEMP/new-publications.md" ${{ inputs.full_scan && '--full' || '' }}
 
       - name: Open or update the review pull request
+        # only when entries were actually added; a run with nothing new changes no files
+        if: steps.gather.outputs.new_count != '0'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           if git diff --quiet publications.json; then
-            echo "No new publications found."
+            echo "No changes to publications.json."
             exit 0
           fi
           git config user.name "github-actions[bot]"

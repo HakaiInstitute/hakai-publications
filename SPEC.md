@@ -46,7 +46,7 @@ A work is added only if **at least one author lists Hakai on that work** (ROR `0
 - datasets, peer reviews, errata, grants, supplementary materials
 - data management plans (DMPTool DOIs, prefix `10.48321/`, or a resource type containing "plan")
 - Zenodo records (`10.5281/`) unless they are a thesis or protocol
-- DataCite version DOIs (`IsVersionOf`)
+- version DOIs: any DOI that a DataCite record marks `IsVersionOf`. The flag is kept through merging and combined across sources, and the DOI is excluded after merging, so it stays excluded even if OpenAlex or Crossref also return it as an article or protocol, and even if its DataCite resource type is one the tool does not collect
 
 ## 5. Deduplication
 
@@ -72,7 +72,7 @@ Added fields:
 | `possible_duplicate_of` | List of DOIs of likely duplicates. Empty when there are none. |
 | `openalex_id` | OpenAlex ID, or `null` when unknown. |
 
-File-level fields: `publication_count` (entries not `rejected`), `last_updated`, and `tool.last_run`.
+File-level fields: `publication_count` (entries not `rejected`), `last_updated`, and `tool.last_run`. These change only when entries are added. A run that finds nothing new leaves the file untouched, so there is never a change that consists of these fields alone.
 
 Existing entries are never edited or removed. Hand edits are preserved. New entries are appended, sorted by year (newest first).
 
@@ -95,8 +95,8 @@ Existing entries are never edited or removed. Hand edits are preserved. New entr
 - **Schedule:** monthly, on the 1st at 14:00 UTC.
 - **Manual:** the "Run workflow" button in the Actions tab, with a "full scan" option.
 - **First run:** all years.
-- **Later runs:** works published within the last 730 days (`--lookback-days`), so late-indexed works are still caught. Duplicates are harmless because of section 5. `--full` forces an all-years scan.
-- **Delivery:** the Action pushes to the fixed branch `auto/new-publications` and opens or updates one pull request. The pull request description, and the Action's run summary, is the run report: a table of the new works with the reasons each matched and any possible duplicates. Nothing reaches the default branch unreviewed. `tool.last_run` only advances when the pull request is merged, so an unmerged pull request is regenerated with anything newer on the next run.
+- **Later runs:** works published within 730 days (`--lookback-days`) before `tool.last_run`, so late-indexed works are still caught. `tool.last_run` only advances when entries are added, so after a quiet stretch the window reaches further back than 730 days from today. That only means scanning a little more. Duplicates are harmless because of section 5. `--full` forces an all-years scan.
+- **Delivery:** a pull request is opened only when at least one new entry was added. The tool reports the count as the `new_count` output of the step, and the pull request step runs only when it is above 0. A run with nothing new writes no file, opens no pull request, and leaves any open one alone. When there are new entries, the Action pushes to the fixed branch `auto/new-publications` and opens or updates one pull request. The pull request description, and the Action's run summary, is the run report: a table of the new works with the reasons each matched and any possible duplicates. Nothing reaches the default branch unreviewed. `tool.last_run` only advances when the pull request is merged, so an unmerged pull request is regenerated with anything newer on the next run.
 
 ## 9. Failure handling
 
@@ -122,5 +122,6 @@ Existing entries are never edited or removed. Hand edits are preserved. New entr
 
 - Affiliation matching depends on how each source records affiliations. A work whose record omits Hakai is missed. Against the 71 curated entries, the tool found 67.
 - Name-only matching is unverified and only annotates the run report. It never adds a work.
+- Version DOIs are recognised only from DataCite records the tool retrieves, which are found by Hakai affiliation or an author's ORCID. A version DOI whose DataCite record lacks both is not retrieved, so another source's record for it would not be excluded. Looking up each candidate DOI in DataCite directly would close this gap.
 - OpenAlex author names are split as given name and family name by the last word, with common particles (van, de, der, ...) kept in the family name. Unusual names may be formatted imperfectly.
 - Titles are used as the source gives them, so capitalisation may not follow APA sentence case.

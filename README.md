@@ -87,7 +87,8 @@ the next run scans in full again.
 Every entry has the same fields: `year`, `citation`, `url`, `doi`, `status`, `title`, `authors`
 (name, ORCID, Hakai flag), `hakai_authors`, `venue`, `type`, `sources`, `date_added`,
 `possible_duplicate_of` (empty when there is none) and `openalex_id`. The file also records
-`publication_count`, `last_updated` and `tool.last_run`. See SPEC.md for the details.
+`publication_count`, `last_updated` and `tool.last_run`, which change only when entries are added.
+See SPEC.md for the details.
 
 The `citation` is plain text in an APA 7 style: authors, year, title, venue, volume(issue), pages
 and the DOI URL. Up to 10 authors are listed in full. With more than 10, it gives the first author
@@ -102,7 +103,8 @@ The reasons a work matched are not stored in the file. They appear only in the r
 The workflow runs on the 1st of each month at 14:00 UTC. To run it by hand, open the Actions tab,
 choose "Gather publications" and click "Run workflow". The "full scan" checkbox rescans all years.
 
-When there are new works, the workflow pushes the branch `auto/new-publications` and opens (or
+If a run finds nothing new, it changes no files and opens no pull request. When there are new
+works, the workflow pushes the branch `auto/new-publications` and opens (or
 updates) one pull request. Review the new entries in the pull request, set each `status`, then
 merge. `tool.last_run` only advances when the pull request is merged, so an unmerged pull request
 is simply regenerated on the next run.
