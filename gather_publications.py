@@ -436,7 +436,14 @@ def merge(works):
         else:  # carry over Hakai flags and ORCIDs seen in other sources
             for a in m["authors"]:
                 for b in w["authors"]:
-                    if ascii_key(a["family"]) == ascii_key(b["family"]) and ascii_key(a["given"])[:1] == ascii_key(b["given"])[:1]:
+                    if (
+                        (a["orcid"] and a["orcid"] == b["orcid"])
+                        or (
+                            not (a["orcid"] and b["orcid"])
+                            and ascii_key(a["family"]) == ascii_key(b["family"])
+                            and ascii_key(a["given"])[:1] == ascii_key(b["given"])[:1]
+                        )
+                    ):
                         a["hakai_affil"] = a["hakai_affil"] or b["hakai_affil"]
                         a["orcid"] = a["orcid"] or b["orcid"]
     return list(merged.values())
@@ -447,7 +454,7 @@ def is_unwanted_zenodo(w):
         w["doi"]
         and w["doi"].startswith("10.5281/")
         and w["type"] not in ("thesis", "protocol")
-        and not re.search(r"protocol|thesis|dissertation", w["title"], re.I)
+        and not re.search(r"\b(?:protocols?|thesis|dissertations?)\b", w["title"], re.I)
     )
 
 
